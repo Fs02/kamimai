@@ -1,6 +1,7 @@
 # Kamimai - 紙舞
 
 A migration manager written in Golang. Use it in run commands via the CLI.
+This fork support cli without the needs of configuration file.
 
 [![GoDoc](https://godoc.org/github.com/eure/kamimai?status.svg)](https://godoc.org/github.com/eure/kamimai)
 [![Build Status](https://travis-ci.org/eure/kamimai.svg?branch=master)](https://travis-ci.org/eure/kamimai)
@@ -12,7 +13,7 @@ A migration manager written in Golang. Use it in run commands via the CLI.
 `kamimai` is written in Go, so if you have Go installed you can install it with go get:
 
 ```shell
-go get github.com/eure/kamimai/cmd/kamimai
+go get github.com/Fs02/kamimai/cmd/kamimai
 ```
 
 Make sure that `kamimai` was installed correctly:
@@ -27,40 +28,40 @@ kamimai -h
 
 ```shell
 # create new migration files
-kamimai -path=./example/mysql -env=test1 create migrate_name
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations create migrate_name
 ```
 
 ### Up
 
 ```shell
 # apply all available migrations
-kamimai -path=./example/mysql -env=test1 up
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations up
 
 # apply the next n migrations
-kamimai -path=./example/mysql -env=test1 up n
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations up n
 
 # apply the given version migration
-kamimai -path=./example/mysql -env=test1 up -version=20060102150405
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations up -version=20060102150405
 ```
 
 ### Down
 
 ```shell
 # rollback the previous migration
-kamimai -path=./example/mysql -env=test1 down
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations down
 
 # rollback the previous n migrations
-kamimai -path=./example/mysql -env=test1 down n
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations down n
 
 # rollback the given version migration
-kamimai -path=./example/mysql -env=test1 down -version=20060102150405
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations down -version=20060102150405
 ```
 
 ### Sync
 
 ```shell
 # sync all migrations
-kamimai -path=./example/mysql -env=test1 sync
+kamimai --driver=mysql --dsn="mysql://user:password@(host:port)/database" --directory=./db/migrations sync
 ```
 
 ## Usage in Go code 
